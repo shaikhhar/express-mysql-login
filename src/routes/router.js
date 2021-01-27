@@ -101,12 +101,13 @@ router.post("/login", (req, res, next) => {
 });
 
 router.get("/user-access", userMiddleware.isLoggedIn, (req, res, next) => {
-  res.send("User and admin can access");
+  res.send("You are an User");
 });
 
 router.get("/admin-access", userMiddleware.isLoggedIn, (req, res, next) => {
-  if (req.userData.role === "Admin") {
-    res.send("Only admin can access");
+  console.log(req.userData.role);
+  if (req.userData.role === "admin") {
+    res.send("You are an admin");
   } else {
     res.send("Unauthorized");
   }
